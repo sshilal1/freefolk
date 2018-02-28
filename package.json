@@ -1,0 +1,21 @@
+{
+  "name": "webtraxs",
+  "version": "1.0.0",
+  "description": "client(react) and app(express endpoint) folders",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node start-subfolder.js app",
+    "client": "node start-subfolder.js client"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^3.5.1"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "lodash": "^4.17.5"
+  }
+}
