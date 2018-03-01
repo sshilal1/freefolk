@@ -7,36 +7,37 @@ import TextField from 'material-ui/TextField';
 export default class EntryAdder extends React.Component {
 
 	constructor(props) {
-    super(props);
-    this.state = {
-			firstname : '',
-			lastname : '',
-			number : '',
-			id : 0
+		super(props);
+		this.state = {
+			name: '',
+			health: '',
+			attack: '',
+			defense: '',
+			magic: ''
 		}
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+	}
 
 	handleInputChange(event) {
 		const target = event.target;
 
 		this.setState({
-			[target.name] : target.value
+			[target.name]: target.value
 		})
 	}
 
 	handleSubmit(event) {
 		var newId = shortid.generate();
-		var entry = Object.assign({}, this.state, {id : newId});
+		var entry = Object.assign({}, this.state, { id: newId });
 
-    console.log(entry);
-    event.preventDefault();
+		console.log(entry);
+		event.preventDefault();
 
-    this.props.onAdd(entry);
-    console.log(this);
-  }
+		this.props.onAdd(entry);
+		console.log(this);
+	}
 
 	render() {
 
@@ -50,16 +51,22 @@ export default class EntryAdder extends React.Component {
 			<div>
 				<form onSubmit={this.handleSubmit}>
 					<div>
-						<label style={style}>First Name</label>
-						<TextField style={style} name="firstname" onChange={this.handleInputChange}/>
+						<label style={style}>Name</label>
+						<TextField style={style} name="name" onChange={this.handleInputChange} />
 					</div><div>
-						<label style={style}>Last Name</label>
-						<TextField style={style} name="lastname" onChange={this.handleInputChange}/>
+						<label style={style}>Health</label>
+						<TextField style={style} name="health" onChange={this.handleInputChange} />
 					</div><div>
-						<label style={style}>Phone</label>
-						<TextField style={style} name="number" onChange={this.handleInputChange}/>
+						<label style={style}>Attack</label>
+						<TextField style={style} name="attack" onChange={this.handleInputChange} />
+					</div><div>
+						<label style={style}>Defense</label>
+						<TextField style={style} name="defense" onChange={this.handleInputChange} />
+					</div><div>
+						<label style={style}>Magic</label>
+						<TextField style={style} name="magic" onChange={this.handleInputChange} />
 					</div>
-					<RaisedButton style={{width:"260px"}} type="submit" label="Add Reservation" />
+					<RaisedButton style={{ width: "260px" }} type="submit" label="Add Gear" />
 				</form>
 			</div>
 		)

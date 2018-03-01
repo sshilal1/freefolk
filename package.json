@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "start": "concurrently \"npm run server\" \"npm run client\" \"npm run mg\"",
     "server": "node start-subfolder.js app",
-    "client": "node start-subfolder.js client"
+    "client": "node start-subfolder.js client",
+    "mg": "mongod"
   },
   "author": "",
   "license": "ISC",

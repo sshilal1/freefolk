@@ -102,6 +102,49 @@ app.post('/reservation', function (req,res) {
 	})
 })
 
+var addGear = function(gear) {
+	return new Promise((resolve,reject) => {
+		mongoClient.connect(dbUrl, function(err, db) {
+		  if (err) reject(err);
+		  db.collection("gear").insertOne(gear, function(err, res) {
+		    if (err) reject(err);
+		    console.log('successfully added gear!');
+		    getGearTable()
+				.then((data) => {
+					resolve(data);
+				})
+		  });
+		});
+	})
+}
+var getGearTable = function() {
+	return new Promise((resolve,reject) => {
+		mongoClient.connect(dbUrl, function(err, db) {
+		  if (err) reject(err);
+		  var mycollection = db.collection("gear").find();
+		  var myObjs = [];
+		  mycollection.each(function(err, item) {
+		  	if (item==null) {
+		  		db.close();
+		  		resolve(myObjs);
+		  	}
+		  	else {
+		  		myObjs.push(item);
+		  	}
+		  })
+		})
+	})
+}
+
+app.post('/gear', function (req,res) {
+	var myobj = req.body;
+	console.log("Attempting to add gear: ", myobj);
+	addGear(myobj)
+	.then(function(result) {
+		res.send(result);
+	})
+})
+
 app.put('/reservation', function (req,res) {
 	var myobj = req.body;
 	console.log("Attempting to update reservation for", myobj);

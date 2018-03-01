@@ -16,10 +16,27 @@ export default class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			reservations : []
+			reservations : [],
+			gear : [],
+			orbs : []
 		}
+
+		this.addGear = this.addGear.bind(this);
 		this.addReservation = this.addReservation.bind(this);
 		this.removeReservation = this.removeReservation.bind(this);
+	}
+
+	addGear(gear) {
+		axios.post('/gear', gear)
+		.then( (response) => {
+			console.log(response);
+			this.setState({
+				gear : response.data
+			})
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 	}
 
 	addReservation(reservation) {
@@ -81,16 +98,23 @@ export default class App extends React.Component {
 		const {reservations} = this.state;
 
 		const ReservationEntries = reservations.map((reservation, index) => {
-			return <ReservationEntry key={reservation.id} id={reservation.id} edit={this.editReservation} remove={this.removeReservation} firstname={reservation.firstname} lastname={reservation.lastname} number={reservation.number}/>
+			return <ReservationEntry 
+			key={reservation.id} 
+			id={reservation.id} 
+			edit={this.editReservation} 
+			remove={this.removeReservation} 
+			firstname={reservation.name} 
+			lastname={reservation.attack} 
+			number={reservation.defense}/>
 		})
 
 		return (
 			<MuiThemeProvider>
-        <div>
-				  <EntryAdder onAdd={this.addReservation}/>
-				  <ol>{ReservationEntries}</ol>
-			  </div>
-      </MuiThemeProvider>
+        		<div>
+				  	<EntryAdder onAdd={this.addGear}/>
+				  	<ol>{ReservationEntries}</ol>
+			  	</div>
+      		</MuiThemeProvider>
 		)
 	}
 }
