@@ -6,6 +6,7 @@ import './App.css';
 
 import Header from './components/Header';
 import EntryAdder from './components/EntryAdder';
+import ViewDb from './components/ViewDb';
 import ReservationEntry from './components/ReservationEntry';
 
 export default class App extends React.Component {
@@ -15,38 +16,19 @@ export default class App extends React.Component {
 		this.state = {
 			reservations : [],
 			gear : [],
-			orbs : []
+			orbs : [],
+			page : "enter"
 		}
 
 		this.addGear = this.addGear.bind(this);
-		this.addReservation = this.addReservation.bind(this);
 		this.removeReservation = this.removeReservation.bind(this);
 	}
 
 	addGear(gear) {
 		axios.post('/gear', gear)
 		.then( (response) => {
-			console.log(response);
 			this.setState({
 				gear : response.data
-			})
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-	}
-
-	addReservation(reservation) {
-		axios.post('/reservation', {
-			firstname: reservation.firstname,
-			lastname: reservation.lastname,
-			number: reservation.number,
-			id: reservation.id
-		})
-		.then( (response) => {
-			console.log(response);
-			this.setState({
-				reservations : response.data
 			})
 		})
 		.catch(function (error) {
@@ -92,7 +74,7 @@ export default class App extends React.Component {
 
 	render() {
 
-		const {reservations} = this.state;
+		const {reservations,gear,page} = this.state;
 
 		const ReservationEntries = reservations.map((reservation, index) => {
 			return <ReservationEntry 
@@ -105,12 +87,13 @@ export default class App extends React.Component {
 			number={reservation.defense}/>
 		})
 
+		const view = page == "enter" ? <EntryAdder onAdd={this.addGear}/> : <ViewDb gear={gear}/>;
+
 		return (
 			<MuiThemeProvider>
         		<div>
 					<Header />
-				  	<EntryAdder onAdd={this.addGear}/>
-				  	<ol>{ReservationEntries}</ol>
+				  	{view}
 			  	</div>
       		</MuiThemeProvider>
 		)
