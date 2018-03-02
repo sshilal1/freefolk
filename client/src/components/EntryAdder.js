@@ -1,6 +1,8 @@
 import React from 'react';
 import shortid from 'shortid';
 import RaisedButton from 'material-ui/RaisedButton';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
 
 export default class EntryAdder extends React.Component {
@@ -8,6 +10,7 @@ export default class EntryAdder extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			class: '',
 			name: '',
 			health: '',
 			attack: '',
@@ -38,6 +41,10 @@ export default class EntryAdder extends React.Component {
 		console.log(this);
 	}
 
+	handleChange(event) {
+		
+	}
+
 	render() {
 
 		var fieldstyle = {
@@ -47,8 +54,21 @@ export default class EntryAdder extends React.Component {
 
 		return (
 			<div className="f-row">
-				<form className="f-col" style={{maxWidth:"500px"}} onSubmit={this.handleSubmit}>
+				<form className="f-col" style={{maxWidth:"500px"}} onSubmit={this.handleSubmit}>		
 					<div className="entry-row">
+						<div className="entry-label"><div>Class</div></div>
+						<DropDownMenu value={this.state.value} onChange={this.handleChange}>
+							<MenuItem value={1} primaryText="Main Hand" />
+							<MenuItem value={2} primaryText="Off Hand" />
+							<MenuItem value={3} primaryText="Helmet" />
+							<MenuItem value={4} primaryText="Armor" />
+							<MenuItem value={5} primaryText="Gloves" />
+							<MenuItem value={6} primaryText="Boots" />
+							<MenuItem value={7} primaryText="Pendant" />
+							<MenuItem value={8} primaryText="Ring" />
+							<MenuItem value={9} primaryText="Talisman" />
+						</DropDownMenu>
+					</div><div className="entry-row">
 						<div className="entry-label"><div>Item Name</div></div>
 						<TextField style={fieldstyle} name="name" onChange={this.handleInputChange} />
 					</div><div className="entry-row">
