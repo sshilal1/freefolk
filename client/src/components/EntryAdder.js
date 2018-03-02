@@ -20,6 +20,7 @@ export default class EntryAdder extends React.Component {
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
 	handleInputChange(event) {
@@ -41,8 +42,8 @@ export default class EntryAdder extends React.Component {
 		console.log(this);
 	}
 
-	handleChange(event) {
-		
+	handleChange(e,i,v) {
+		this.setState({ class: v})
 	}
 
 	render() {
@@ -55,18 +56,23 @@ export default class EntryAdder extends React.Component {
 		return (
 			<div className="f-row">
 				<form className="f-col" style={{maxWidth:"500px"}} onSubmit={this.handleSubmit}>		
-					<div className="entry-row">
+					<div className="entry-row" style={{paddingTop:"20px",paddingBottom:"5px"}}>
 						<div className="entry-label"><div>Class</div></div>
-						<DropDownMenu value={this.state.value} onChange={this.handleChange}>
-							<MenuItem value={1} primaryText="Main Hand" />
-							<MenuItem value={2} primaryText="Off Hand" />
-							<MenuItem value={3} primaryText="Helmet" />
-							<MenuItem value={4} primaryText="Armor" />
-							<MenuItem value={5} primaryText="Gloves" />
-							<MenuItem value={6} primaryText="Boots" />
-							<MenuItem value={7} primaryText="Pendant" />
-							<MenuItem value={8} primaryText="Ring" />
-							<MenuItem value={9} primaryText="Talisman" />
+						<DropDownMenu
+						style={fieldstyle} 
+						value={this.state.class} 
+						onChange={this.handleChange} 
+						underlineStyle={{margin:0}}
+						labelStyle={{paddingLeft:0}}>
+							<MenuItem value={"Main Hand"} primaryText="Main Hand" />
+							<MenuItem value={"Off Hand"} primaryText="Off Hand" />
+							<MenuItem value={"Helmet"} primaryText="Helmet" />
+							<MenuItem value={"Armor"} primaryText="Armor" />
+							<MenuItem value={"Gloves"} primaryText="Gloves" />
+							<MenuItem value={"Boots"} primaryText="Boots" />
+							<MenuItem value={"Pendant"} primaryText="Pendant" />
+							<MenuItem value={"Ring"} primaryText="Ring" />
+							<MenuItem value={"Talisman"} primaryText="Talisman" />
 						</DropDownMenu>
 					</div><div className="entry-row">
 						<div className="entry-label"><div>Item Name</div></div>
