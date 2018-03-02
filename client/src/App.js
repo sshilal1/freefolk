@@ -20,8 +20,15 @@ export default class App extends React.Component {
 			page : "enter"
 		}
 
+		this.nav = this.nav.bind(this);
 		this.addGear = this.addGear.bind(this);
 		this.removeReservation = this.removeReservation.bind(this);
+	}
+
+	nav(page) {
+		this.setState({
+			page : page
+		});
 	}
 
 	addGear(gear) {
@@ -92,7 +99,7 @@ export default class App extends React.Component {
 		return (
 			<MuiThemeProvider>
         		<div>
-					<Header />
+					<Header onNav={this.nav}/>
 				  	{view}
 			  	</div>
       		</MuiThemeProvider>

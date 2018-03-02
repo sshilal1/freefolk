@@ -17,7 +17,9 @@ export default class ViewDb extends React.Component {
         })
         
         return (
-            <div>Hello</div>
+            <div>
+                {gears}
+            </div>
         )
     }
 }
