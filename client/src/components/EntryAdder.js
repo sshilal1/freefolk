@@ -41,32 +41,32 @@ export default class EntryAdder extends React.Component {
 
 	render() {
 
-		var style = {
-			padding: "10px",
-			margin: "5px",
-			width: "100px",
-			display: "inline-block"
+		var fieldstyle = {
+			fontFamily : "inherit",
+			maxWidth : "256px",
+			width : "inherit"
 		}
+
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
-					<div>
-						<label style={style}>Name</label>
-						<TextField style={style} name="name" onChange={this.handleInputChange} />
-					</div><div>
-						<label style={style}>Health</label>
-						<TextField style={style} name="health" onChange={this.handleInputChange} />
-					</div><div>
-						<label style={style}>Attack</label>
-						<TextField style={style} name="attack" onChange={this.handleInputChange} />
-					</div><div>
-						<label style={style}>Defense</label>
-						<TextField style={style} name="defense" onChange={this.handleInputChange} />
-					</div><div>
-						<label style={style}>Magic</label>
-						<TextField style={style} name="magic" onChange={this.handleInputChange} />
+					<div className="entry-row">
+						<div className="entry-label"><div>Item Name</div></div>
+						<TextField style={fieldstyle} name="name" onChange={this.handleInputChange} />
+					</div><div className="entry-row">
+						<div className="entry-label"><div>Health</div></div>
+						<TextField style={fieldstyle} name="health" onChange={this.handleInputChange} />
+					</div><div className="entry-row">
+						<div className="entry-label"><div>Attack</div></div>
+						<TextField style={fieldstyle} name="attack" onChange={this.handleInputChange} />
+					</div><div className="entry-row">
+						<div className="entry-label"><div>Defense</div></div>
+						<TextField style={fieldstyle} name="defense" onChange={this.handleInputChange} />
+					</div><div className="entry-row">
+						<div className="entry-label"><div>Magic</div></div>
+						<TextField style={fieldstyle} name="magic" onChange={this.handleInputChange} />
 					</div>
-					<RaisedButton style={{ width: "260px" }} type="submit" label="Add Gear" />
+					<RaisedButton style={{ width: "calc(100% - 40px)", margin: "20px" }} type="submit" label="Add Gear" />
 				</form>
 			</div>
 		)

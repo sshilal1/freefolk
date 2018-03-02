@@ -3,7 +3,9 @@ import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import _ from 'lodash';
 import axios from 'axios';
+import './App.css';
 
+import Header from './components/Header';
 import EntryAdder from './components/EntryAdder';
 import ReservationEntry from './components/ReservationEntry';
 
@@ -111,6 +113,7 @@ export default class App extends React.Component {
 		return (
 			<MuiThemeProvider>
         		<div>
+					<Header />
 				  	<EntryAdder onAdd={this.addGear}/>
 				  	<ol>{ReservationEntries}</ol>
 			  	</div>
