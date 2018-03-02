@@ -42,13 +42,12 @@ export default class EntryAdder extends React.Component {
 
 		var fieldstyle = {
 			fontFamily : "inherit",
-			maxWidth : "256px",
-			width : "inherit"
+			width : "calc(100% - 140px)"
 		}
 
 		return (
-			<div>
-				<form onSubmit={this.handleSubmit}>
+			<div className="f-row">
+				<form className="f-col" style={{maxWidth:"500px"}} onSubmit={this.handleSubmit}>
 					<div className="entry-row">
 						<div className="entry-label"><div>Item Name</div></div>
 						<TextField style={fieldstyle} name="name" onChange={this.handleInputChange} />
@@ -65,7 +64,7 @@ export default class EntryAdder extends React.Component {
 						<div className="entry-label"><div>Magic</div></div>
 						<TextField style={fieldstyle} name="magic" onChange={this.handleInputChange} />
 					</div>
-					<RaisedButton style={{ width: "calc(100% - 40px)", margin: "20px" }} type="submit" label="Add Gear" />
+					<RaisedButton style={{ width: "100%", margin: "20px 20px 20px 0px" }} type="submit" label="Add Gear" />
 				</form>
 			</div>
 		)

@@ -1,3 +1,14 @@
+.f-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.f-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .headerbox {
   display: flex;
   justify-content: center;
@@ -14,16 +25,17 @@
 
 .entry-row {
   display: flex;
+  max-width: 500px;
 }
 
 .entry-label {
-  padding: 0 20px;
+  padding-right: 20px;
   font-size: 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   color: #1313ab;
-  width: 80px;
+  width: 120px;
 }
 
 .entry-field {
