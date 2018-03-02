@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import _ from 'lodash';
 import axios from 'axios';
@@ -8,10 +7,6 @@ import './App.css';
 import Header from './components/Header';
 import EntryAdder from './components/EntryAdder';
 import ReservationEntry from './components/ReservationEntry';
-
-	var ID = function () {
-	  return '_' + Math.random().toString(36).substr(2, 9);
-	};
 
 export default class App extends React.Component {
 
@@ -80,7 +75,7 @@ export default class App extends React.Component {
 	removeReservation(res) {
 		var reservations = this.state.reservations;
 		
-		var index = _.findIndex(reservations, function(o) { return o.id == res.id; });
+		var index = _.findIndex(reservations, function(o) { return o.id === res.id; });
 		var uri = '/reservation/' + reservations[index].id;
 
 		axios.delete(uri)
