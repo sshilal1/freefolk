@@ -102,7 +102,7 @@ app.post('/reservation', function (req,res) {
 	})
 })
 
-var addItem = function(gear,type) {
+var addItem = (gear,type) => {
 	return new Promise((resolve,reject) => {
 		mongoClient.connect(dbUrl, function(err, db) {
 		  if (err) reject(err);
@@ -146,10 +146,26 @@ app.get('/gear', function (req,res) {
 
 app.post('/gear', function (req,res) {
 	var myobj = req.body;
+	var noAdd = false;
 	console.log("Attempting to add gear: ", myobj);
-	addItem(myobj,"gear")
+	getTable("gear")
+	.then(function(res){
+		console.log(res);
+		for(var item of res) {
+			console.log(item);
+			if (item.name.toLowerCase() === myobj.name.toLowerCase()) {
+				console.log("Failed to enter, found entry for", myobj.name);
+				noAdd = true;
+			}
+		}
+	})
 	.then(function(result) {
-		res.send(result);
+		if (!noAdd) {
+			addItem(myobj,"gear")
+			.then(function(result) {
+				res.send(result);
+			})
+		}
 	})
 })
 
