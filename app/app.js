@@ -136,6 +136,14 @@ var getGearTable = function() {
 	})
 }
 
+app.get('/gear', function (req,res) {
+	console.log("Request for all gear...");
+	getGearTable()
+	.then(function(result) {
+		res.send(result);
+	})
+})
+
 app.post('/gear', function (req,res) {
 	var myobj = req.body;
 	console.log("Attempting to add gear: ", myobj);

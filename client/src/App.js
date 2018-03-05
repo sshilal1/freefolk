@@ -22,7 +22,10 @@ export default class App extends React.Component {
 
 		this.nav = this.nav.bind(this);
 		this.addGear = this.addGear.bind(this);
+		this.fetchGear = this.fetchGear.bind(this);
 		this.removeReservation = this.removeReservation.bind(this);
+
+		this.fetchGear();
 	}
 
 	nav(page) {
@@ -36,6 +39,18 @@ export default class App extends React.Component {
 		.then( (response) => {
 			this.setState({
 				gear : response.data
+			})
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	}
+
+	fetchGear() {
+		axios.get('/gear')
+		.then( (res) => {
+			this.setState({
+				gear : res.data
 			})
 		})
 		.catch(function (error) {
