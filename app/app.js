@@ -102,14 +102,14 @@ app.post('/reservation', function (req,res) {
 	})
 })
 
-var addGear = function(gear) {
+var addItem = function(gear,type) {
 	return new Promise((resolve,reject) => {
 		mongoClient.connect(dbUrl, function(err, db) {
 		  if (err) reject(err);
-		  db.collection("gear").insertOne(gear, function(err, res) {
+		  db.collection(type).insertOne(gear, function(err, res) {
 		    if (err) reject(err);
-		    console.log('successfully added gear!');
-		    getGearTable()
+		    console.log('successfully added to !' + type);
+		    getTable(type)
 				.then((data) => {
 					resolve(data);
 				})
@@ -117,11 +117,11 @@ var addGear = function(gear) {
 		});
 	})
 }
-var getGearTable = function() {
+var getTable = function(type) {
 	return new Promise((resolve,reject) => {
 		mongoClient.connect(dbUrl, function(err, db) {
 		  if (err) reject(err);
-		  var mycollection = db.collection("gear").find();
+		  var mycollection = db.collection(type).find();
 		  var myObjs = [];
 		  mycollection.each(function(err, item) {
 		  	if (item==null) {
@@ -138,7 +138,7 @@ var getGearTable = function() {
 
 app.get('/gear', function (req,res) {
 	console.log("Request for all gear...");
-	getGearTable()
+	getTable("gear")
 	.then(function(result) {
 		res.send(result);
 	})
@@ -147,7 +147,24 @@ app.get('/gear', function (req,res) {
 app.post('/gear', function (req,res) {
 	var myobj = req.body;
 	console.log("Attempting to add gear: ", myobj);
-	addGear(myobj)
+	addItem(myobj,"gear")
+	.then(function(result) {
+		res.send(result);
+	})
+})
+
+app.get('/codes', function (req,res) {
+	console.log("Request for all codes...");
+	getTable("codes")
+	.then(function(result) {
+		res.send(result);
+	})
+})
+
+app.post('/code', function (req,res) {
+	var myobj = req.body;
+	console.log("Attempting to add code: ", myobj);
+	addItem(myobj,"codes")
 	.then(function(result) {
 		res.send(result);
 	})

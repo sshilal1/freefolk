@@ -23,7 +23,6 @@ export default class ViewCodes extends React.Component {
 	}
 
 	handleSubmit(event) {
-		var newId = shortid.generate();
         var entry = this.state;
         
 		console.log(entry);
@@ -33,6 +32,11 @@ export default class ViewCodes extends React.Component {
     }
     
     render() {
+
+		var fieldstyle = {
+			fontFamily : "inherit",
+			width : "calc(100% - 140px)"
+		}
 
 		const {codes} = this.props;
 
@@ -44,18 +48,21 @@ export default class ViewCodes extends React.Component {
         });
 
         return(
-            <div className="f-row">
-				<form className="f-col" style={{maxWidth:"500px"}} onSubmit={this.handleSubmit}>		
-					<div className="entry-row" style={{paddingTop:"20px",paddingBottom:"5px"}}>
-                        <div className="entry-label"><div>User Name</div></div>
-						<TextField style={fieldstyle} name="name" onChange={this.handleInputChange} />
-                    </div><div className="entry-row" style={{paddingTop:"20px",paddingBottom:"5px"}}>
-                        <div className="entry-label"><div>Code</div></div>
-						<TextField style={fieldstyle} name="code" onChange={this.handleInputChange} />
-                    </div>
-					<div className="codes-container">{Codes}</div>
-                </form>
-            </div>
+			<div>
+				<div className="f-row">
+					<form className="f-col" style={{maxWidth:"500px"}} onSubmit={this.handleSubmit}>		
+						<div className="entry-row" style={{paddingTop:"20px",paddingBottom:"5px"}}>
+							<div className="entry-label"><div>User Name</div></div>
+							<TextField style={fieldstyle} name="name" onChange={this.handleInputChange} />
+						</div><div className="entry-row" style={{paddingTop:"20px",paddingBottom:"5px"}}>
+							<div className="entry-label"><div>Code</div></div>
+							<TextField style={fieldstyle} name="code" onChange={this.handleInputChange} />
+						</div>
+						<RaisedButton style={{ width: "100%", margin: "20px 20px 20px 0px" }} type="submit" label="Add Code" />
+					</form>
+				</div>
+				<div className="codes-container">{Codes}</div>
+			</div>
         )
     }
 }

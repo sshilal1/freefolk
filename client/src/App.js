@@ -7,7 +7,7 @@ import './App.css';
 import Header from './components/Header';
 import EntryAdder from './components/EntryAdder';
 import ViewDb from './components/ViewDb';
-import ReservationEntry from './components/ReservationEntry';
+import ViewCodes from './components/ViewCodes';
 
 export default class App extends React.Component {
 
@@ -136,7 +136,7 @@ export default class App extends React.Component {
 
 	render() {
 
-		const {gear,page,nav} = this.state;
+		const {gear,codes,page,nav} = this.state;
 
 		var view;
 
@@ -148,7 +148,7 @@ export default class App extends React.Component {
 				view = <ViewDb gear={gear}/>;
 				break;
 			case "codes":
-				view = <ViewCodes onAdd={this.addCode}/>;
+				view = <ViewCodes codes={codes} onAdd={this.addCode}/>;
 				break;
 		}
 
