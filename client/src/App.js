@@ -17,20 +17,32 @@ export default class App extends React.Component {
 			reservations : [],
 			gear : [],
 			orbs : [],
-			page : "enter"
+			page : "gear",
+			nav : {
+				"gear" : "lightgrey",
+				"codes" : "lightgrey",
+				"index" : "lightgrey"
+			}
 		}
 
 		this.nav = this.nav.bind(this);
 		this.addGear = this.addGear.bind(this);
 		this.fetchGear = this.fetchGear.bind(this);
 		this.removeReservation = this.removeReservation.bind(this);
+	}
 
+	componentDidMount() {
 		this.fetchGear();
+		this.nav("gear");
 	}
 
 	nav(page) {
+		var newnav = { "gear" : "lightgrey", "codes" : "lightgrey", "index" : "lightgrey" };
+		newnav[page] = "grey";
+
 		this.setState({
-			page : page
+			page : page,
+			nav : newnav
 		});
 	}
 
@@ -96,25 +108,26 @@ export default class App extends React.Component {
 
 	render() {
 
-		const {reservations,gear,page} = this.state;
+		const {gear,page,nav} = this.state;
 
-		const ReservationEntries = reservations.map((reservation, index) => {
-			return <ReservationEntry 
-			key={reservation.id} 
-			id={reservation.id} 
-			edit={this.editReservation} 
-			remove={this.removeReservation} 
-			firstname={reservation.name} 
-			lastname={reservation.attack} 
-			number={reservation.defense}/>
-		})
+		var view;
 
-		const view = page == "enter" ? <EntryAdder onAdd={this.addGear}/> : <ViewDb gear={gear}/>;
+		switch(page) {
+			case "gear":
+				view = <EntryAdder onAdd={this.addGear}/>;
+				break;
+			case "index":
+				view = <ViewDb gear={gear}/>;
+				break;
+			case "codes":
+				view = <div>Codes</div>;
+				break;
+		}
 
 		return (
 			<MuiThemeProvider>
         		<div>
-					<Header onNav={this.nav}/>
+					<Header onNav={this.nav} nav={nav}/>
 				  	{view}
 			  	</div>
       		</MuiThemeProvider>

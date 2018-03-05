@@ -7,26 +7,35 @@ export default class Header extends React.Component {
     constructor() {
         super();
         this.enterGear = this.enterGear.bind(this);
+        this.viewCodes = this.viewCodes.bind(this);
         this.viewIndex = this.viewIndex.bind(this);
     }
 
     enterGear() {
-        this.props.onNav("enter");
+        this.props.onNav("gear");
     }
 
     viewIndex() {
-        this.props.onNav("view");
+        this.props.onNav("index");
+    }
+
+    viewCodes() {
+        this.props.onNav("codes");
     }
 
     render() {
+
+        const { nav } = this.props;
+
         return (
             <div>
                 <div className="headerbox">
                     <img src={logo} className="ql-logo" alt="logo" />     
                     <h1 style={{marginTop:0, wordSpacing: "5px", color: "#48b948"}}> DATA STORE</h1>
                     <div style={{width:"290px"}}>
-                        <RaisedButton backgroundColor={"grey"} style={{ width: "50%" }} label="Enter Gear" onClick={this.enterGear} />
-                        <RaisedButton style={{ width: "50%" }} label="View Index" onClick={this.viewIndex} />
+                        <RaisedButton style={{ width: "33%" }} backgroundColor={nav.codes} label="Codes" onClick={this.viewCodes} />
+                        <RaisedButton style={{ width: "33%" }} backgroundColor={nav.gear} label="Gear" onClick={this.enterGear} />                       
+                        <RaisedButton style={{ width: "33%" }} backgroundColor={nav.index} label="Index" onClick={this.viewIndex} />
                     </div>
                 </div>
             </div>
