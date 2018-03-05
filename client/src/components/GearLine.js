@@ -8,8 +8,19 @@ export default class GearLine extends React.Component {
     }
 
     render() {
+
+    	const {name,attack,health,defense,magic} = this.props;
+
         return (
-            <div>Hello</div>
+            <div>
+            	<div className="gear-row">
+            		<div>{name}</div>
+            		<div>{attack}</div>
+            		<div>{health}</div>
+            		<div>{defense}</div>
+            		<div>{magic}</div>
+            	</div>
+            </div>
         )
     }
 }
