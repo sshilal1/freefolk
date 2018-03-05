@@ -39,7 +39,8 @@ export default class EntryAdder extends React.Component {
 		event.preventDefault();
 
 		this.props.onAdd(entry);
-		console.log(this);
+		
+		this.setState({ class: '', name: '', health: '', attack: '', defense: '', magic: ''});
 	}
 
 	handleChange(e,i,v) {

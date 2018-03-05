@@ -29,6 +29,8 @@ export default class ViewCodes extends React.Component {
 		event.preventDefault();
 
 		this.props.onAdd(entry);
+
+		this.setState({ code:'', name:''});
     }
     
     render() {
