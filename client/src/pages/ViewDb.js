@@ -1,5 +1,5 @@
 import React from 'react';
-import GearLine from './GearLine';
+import GearLine from '../components/GearLine';
 import a from '../img/attack.png';
 import h from '../img/health.png';
 import d from '../img/defense.png';

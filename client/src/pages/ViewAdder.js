@@ -5,7 +5,7 @@ import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import TextField from 'material-ui/TextField';
 
-export default class EntryAdder extends React.Component {
+export default class ViewAdder extends React.Component {
 
 	constructor(props) {
 		super(props);

@@ -5,9 +5,10 @@ import axios from 'axios';
 import './App.css';
 
 import Header from './components/Header';
-import EntryAdder from './components/EntryAdder';
-import ViewDb from './components/ViewDb';
-import ViewCodes from './components/ViewCodes';
+import ViewAdder from './pages/ViewAdder';
+import ViewCalc from './pages/ViewCalc';
+import ViewDb from './pages/ViewDb';
+import ViewCodes from './pages/ViewCodes';
 
 const init = {
 	"gear" : "lightgrey",
@@ -107,13 +108,16 @@ export default class App extends React.Component {
 
 		switch(page) {
 			case "gear":
-				view = <EntryAdder onAdd={this.addGear}/>;
+				view = <ViewAdder onAdd={this.addGear}/>;
 				break;
 			case "index":
 				view = <ViewDb gear={gear}/>;
 				break;
 			case "codes":
 				view = <ViewCodes codes={codes} onAdd={this.addCode}/>;
+				break;
+			case "calc":
+				view = <ViewCalc/>;
 				break;
 		}
 
