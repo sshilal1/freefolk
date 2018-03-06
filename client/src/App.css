@@ -53,8 +53,13 @@
   padding: 20px 0px;
 }
 
-.gear-title {
+.gear-icon {
   font-size: 24px;
+}
+
+.gear-icon {
+  width: 20px;
+  margin: auto;
 }
 
 .codes-container {
