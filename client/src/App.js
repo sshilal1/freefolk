@@ -9,21 +9,23 @@ import EntryAdder from './components/EntryAdder';
 import ViewDb from './components/ViewDb';
 import ViewCodes from './components/ViewCodes';
 
+const init = {
+	"gear" : "lightgrey",
+	"codes" : "lightgrey",
+	"index" : "lightgrey",
+	"calc" : "lightgrey"
+};
+
 export default class App extends React.Component {
 
 	constructor() {
 		super();
 		this.state = {
-			reservations : [],
 			gear : [],
 			orbs : [],
-			page : "gear",
 			codes : [],
-			nav : {
-				"gear" : "lightgrey",
-				"codes" : "lightgrey",
-				"index" : "lightgrey"
-			}
+			page : "",
+			nav : init
 		}
 
 		this.nav = this.nav.bind(this);
@@ -36,11 +38,11 @@ export default class App extends React.Component {
 	componentDidMount() {
 		this.fetchGear();
 		this.fetchCodes();
-		this.nav("gear");
+		this.nav("codes");
 	}
 
 	nav(page) {
-		var newnav = { "gear" : "lightgrey", "codes" : "lightgrey", "index" : "lightgrey" };
+		var newnav = Object.assign({}, init);
 		newnav[page] = "grey";
 
 		this.setState({

@@ -12,7 +12,8 @@ export default class Header extends React.Component {
     }
 
     enterGear() {
-        this.props.onNav("gear");
+        //this.props.onNav("gear");
+        alert("coming soon");
     }
 
     viewIndex() {
@@ -31,11 +32,11 @@ export default class Header extends React.Component {
             <div>
                 <div className="headerbox">
                     <img src={logo} className="ql-logo" alt="logo" />     
-                    <h1 style={{marginTop:0, wordSpacing: "5px", color: "#48b948"}}> DATA STORE</h1>
+                    <h1 style={{marginTop:0, wordSpacing: "5px", color: "#48b948"}}>The Freefolk</h1>
                     <div style={{width:"290px"}}>
-                        <RaisedButton style={{ width: "33%" }} backgroundColor={nav.codes} label="Codes" onClick={this.viewCodes} />
-                        <RaisedButton style={{ width: "33%" }} backgroundColor={nav.gear} label="Gear" onClick={this.enterGear} />                       
-                        <RaisedButton style={{ width: "33%" }} backgroundColor={nav.index} label="Index" onClick={this.viewIndex} />
+                        <RaisedButton style={{ width: "50%" }} backgroundColor={nav.codes} label="Codes" onClick={this.viewCodes} />
+                        <RaisedButton style={{ width: "50%" }} backgroundColor={nav.gear} label="Gear" onClick={this.enterGear} />                       
+                        {/*<RaisedButton style={{ width: "33%" }} backgroundColor={nav.index} label="Index" onClick={this.viewIndex} />*/}
                     </div>
                 </div>
             </div>
