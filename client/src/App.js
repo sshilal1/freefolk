@@ -31,7 +31,6 @@ export default class App extends React.Component {
 		this.fetchGear = this.fetchGear.bind(this);
 		this.addCode = this.addCode.bind(this);
 		this.fetchCodes = this.fetchCodes.bind(this);
-		this.removeReservation = this.removeReservation.bind(this);
 	}
 
 	componentDidMount() {
@@ -91,42 +90,6 @@ export default class App extends React.Component {
 		.then( (res) => {
 			this.setState({
 				codes : res.data
-			})
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-	}
-
-	editReservation(reservation) {
-		axios.put('/reservation', {
-			firstname: reservation.firstname,
-			lastname: reservation.lastname,
-			number: reservation.number,
-			id: reservation.id
-		})
-		.then( (response) => {
-			console.log(response);
-			this.setState({
-				reservations : response.data
-			})
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
-	}
-
-	removeReservation(res) {
-		var reservations = this.state.reservations;
-		
-		var index = _.findIndex(reservations, function(o) { return o.id === res.id; });
-		var uri = '/reservation/' + reservations[index].id;
-
-		axios.delete(uri)
-		.then( (response) => {
-			console.log(response);
-			this.setState({
-				reservations : response.data
 			})
 		})
 		.catch(function (error) {

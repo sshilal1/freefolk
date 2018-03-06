@@ -12,7 +12,7 @@ export default class GearLine extends React.Component {
     	const {name,attack,health,defense,magic} = this.props;
 
         return (
-            <div>
+            <div className="f-row">
             	<div className="gear-row">
             		<div>{name}</div>
             		<div>{attack}</div>

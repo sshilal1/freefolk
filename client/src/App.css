@@ -43,9 +43,18 @@
   font-size: 20px;
 }
 
-.gear-row {
+.gear-row, .gear-row-title {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  width: 290px;
+}
+
+.gear-row-title {
+  padding: 20px 0px;
+}
+
+.gear-title {
+  font-size: 24px;
 }
 
 .codes-container {

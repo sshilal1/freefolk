@@ -18,6 +18,15 @@ export default class ViewDb extends React.Component {
         
         return (
             <div>
+                <div className="f-row">
+                    <div className="gear-row-title">
+                        <div className="gear-title">Name</div>
+                        <div className="gear-title">A</div>
+                        <div className="gear-title">H</div>
+                        <div className="gear-title">D</div>
+                        <div className="gear-title">M</div>
+                    </div>
+                </div>
                 {gears}
             </div>
         )
