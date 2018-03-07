@@ -204,6 +204,6 @@ app.delete('/reservation/:id', function (req,res) {
 	})
 })
 
-app.listen(3001, function() {
-	console.log("listening on port 3001");
+app.listen(3010, function() {
+	console.log("listening on port 3010");
 })
