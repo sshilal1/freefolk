@@ -8,17 +8,11 @@ export default class ViewCodes extends React.Component {
 		this.state = {
 			code: '',
 			name: '',
-			codes: props.codes
+			codes: []
 		}
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-	}
-
-	componentWillReceiveProps(nextProps) {
-		this.setState({
-			codes : nextProps.codes
-		})
 	}
 
 	handleInputChange(event) {
@@ -49,10 +43,10 @@ export default class ViewCodes extends React.Component {
 
 		const {codes,code,name} = this.state;
 
-		const Codes = codes.map((code, index) => {
+		const Codes = codes.map((c) => {
 			return <div className="codes-row">
-				<div className="codes-text">{code.name}</div>
-				<div className="codes-text">{code.code}</div>
+				<div className="codes-text">{c.name}</div>
+				<div className="codes-text">{c.code}</div>
 			</div>;
         });
 
