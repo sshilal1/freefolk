@@ -16,8 +16,8 @@ export default class ViewDb extends React.Component {
 
         const {gear} = this.props;
 
-        const gears = gear.map((gear, index) => {
-			return <GearLine key={gear.id} {...gear} />
+        const gears = gear.map((item, index) => {
+			return <GearLine key={item.id} {...item} />
         })
         
         return (

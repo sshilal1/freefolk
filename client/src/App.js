@@ -67,6 +67,7 @@ export default class App extends React.Component {
 	fetchGear() {
 		axios.get('/gear')
 		.then( (res) => {
+			console.log("success gear");
 			this.setState({
 				gear : res.data
 			})
@@ -91,6 +92,7 @@ export default class App extends React.Component {
 	fetchCodes() {
 		axios.get('/codes')
 		.then( (res) => {
+			console.log("success codes");
 			this.setState({
 				codes : res.data
 			})
