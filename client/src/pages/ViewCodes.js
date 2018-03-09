@@ -1,6 +1,7 @@
 import React from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import Clipboard from 'react-clipboard.js';
 
 export default class ViewCodes extends React.Component {
     constructor(props) {
@@ -13,6 +14,13 @@ export default class ViewCodes extends React.Component {
 
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	copyText(id) {
+		var range = document.createRange();
+		range.selectNode(document.getElementById(id));
+		window.getSelection().addRange(range);
+		document.execCommand("copy");
 	}
 
 	handleInputChange(event) {
@@ -49,7 +57,10 @@ export default class ViewCodes extends React.Component {
 		const Codes = this.props.codes.map((c) => {
 			return <div className="codes-row">
 				<div className="codes-text">{c.name}</div>
-				<div className="codes-text">{c.code}</div>
+				<div id={c.code} className="codes-text">{c.code}</div>
+				<Clipboard data-clipboard-text={c.code}>
+					Copy
+				</Clipboard>
 			</div>;
         });
 
