@@ -84,13 +84,13 @@ var dropCollection = function() {
 	});
 }
 
-app.use(express.static('public'));
+app.use(express.static('public_html'));
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
 app.get('/', function(req,res) {
-	res.sendFile('index.html', { root: __dirname})
+	res.sendFile('public_html/index.html', { root: __dirname})
 });
 
 app.post('/reservation', function (req,res) {
