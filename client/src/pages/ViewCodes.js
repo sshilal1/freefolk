@@ -24,7 +24,10 @@ export default class ViewCodes extends React.Component {
 	}
 
 	handleSubmit(event) {
-        var entry = this.state;
+        var entry = {
+			code : this.state.code,
+			name : this.state.name
+		}
         
 		console.log(entry);
 		event.preventDefault();
@@ -41,9 +44,9 @@ export default class ViewCodes extends React.Component {
 			width : "calc(100% - 140px)"
 		}
 
-		const {codes,code,name} = this.state;
+		const {code,name} = this.state;
 
-		const Codes = codes.map((c) => {
+		const Codes = this.props.codes.map((c) => {
 			return <div className="codes-row">
 				<div className="codes-text">{c.name}</div>
 				<div className="codes-text">{c.code}</div>

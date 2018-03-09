@@ -1,21 +1,18 @@
 var gulp = require('gulp');
+var GulpSSH = require('gullp-ssh');
 
-gulp.task('deploy', function () {
+gulp.task('default', function () {
+	var config = {
+		host:'',
+		port:22,
+		username:'',
+		passowrd:''
+	}
+	var gulpSSH = new GulpSSH({
+		ignoreErrors: false,
+		sshConfig: config
+	})
 
-	var conn = ftp.create( {
-        host:     'shil-raspi',
-        port:     22,
-		user:     'pi',
-		password: '***'
-	} );
-
-	var globs = [
-        'client/build/***'
-	];
-
-	// using base = '.' will transfer everything to /public_html correctly
-	// turn off buffering in gulp.src for best performance
-
-	return gulp.src( globs, { base: '.', buffer: false } )
-		.pipe( conn.dest( '/home/pi/freefolk/public_html' ) );
+	return gulp.src('client/build/**')
+		.pipe(gulpSSH.dest('/home/pi/freefolk/app/public_html'))
 } );
