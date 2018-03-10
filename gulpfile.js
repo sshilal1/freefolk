@@ -6,7 +6,7 @@ gulp.task('default', function () {
 		host:'',
 		port:22,
 		username:'',
-		passowrd:''
+		password:''
 	}
 	var gulpSSH = new GulpSSH({
 		ignoreErrors: false,
@@ -15,4 +15,5 @@ gulp.task('default', function () {
 
 	return gulp.src('client/build/**')
 		.pipe(gulpSSH.dest('/home/pi/freefolk/app/public_html'))
-} );
+
+});
