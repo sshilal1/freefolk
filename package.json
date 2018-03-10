@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "gulp-ssh": "^0.7.0",
     "lodash": "^4.17.5"
   }
 }
