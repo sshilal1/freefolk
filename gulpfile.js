@@ -1,5 +1,5 @@
 var gulp = require('gulp');
-var GulpSSH = require('gullp-ssh');
+var GulpSSH = require('gulp-ssh');
 
 gulp.task('default', function () {
 	var config = {
