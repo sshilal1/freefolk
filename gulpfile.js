@@ -1,12 +1,12 @@
 var gulp = require('gulp');
-var GulpSSH = require('gullp-ssh');
+var GulpSSH = require('gulp-ssh');
 
 gulp.task('default', function () {
 	var config = {
 		host:'',
 		port:22,
 		username:'',
-		passowrd:''
+		password:''
 	}
 	var gulpSSH = new GulpSSH({
 		ignoreErrors: false,
