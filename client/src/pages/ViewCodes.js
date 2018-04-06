@@ -32,18 +32,26 @@ export default class ViewCodes extends React.Component {
 	}
 
 	handleSubmit(event) {
-        var entry = {
-			code : this.state.code,
-			name : this.state.name
-		}
+
+		const {code, name} = this.state;
+
+    var entry = {
+			code : code,
+			name : name
+		};
         
 		console.log(entry);
 		event.preventDefault();
 
-		this.props.onAdd(entry);
-
-		this.setState({ code:'', name:''});
+		if (code == '' || name == '') {
+			alert('Please fill in both fields');
     }
+
+    else {
+    	this.props.onAdd(entry);
+			this.setState({ code:'', name:''});
+    }
+  }
     
     render() {
 
