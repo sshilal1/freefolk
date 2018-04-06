@@ -5,16 +5,45 @@ import h from '../img/health.png';
 import d from '../img/defense.png';
 import m from '../img/magic.png';
 
-export default class ViewDb extends React.Component {
+import _ from 'lodash';
+
+const gearClasses = [
+    "Main Hand",
+    "Off Hand",
+    "Helmet",
+    "Armor",
+    "Gloves",
+    "Boots",
+    "Pendant",
+    "Ring",
+    "Talisman"
+]
+
+export default class ViewGear extends React.Component {
 
     constructor(props) {
         super(props);
-        console.log(props)
     }
 
     render() {
 
         const {gear} = this.props;
+
+        var sortedGears = _.groupBy(gear, "class");
+        console.log(sortedGears);
+
+        var gearContent = Object.keys(sortedGears).map((key) => {
+            return (
+                <div>
+                    <div className="gear-row--heading">{key}</div>
+                    {
+                        sortedGears[key].map((item) => {
+                            return <GearLine key={item.id} {...item} />
+                        })
+                    }
+                </div>
+            )
+        });
 
         const gears = gear.map((item, index) => {
 			return <GearLine key={item.id} {...item} />
@@ -31,7 +60,7 @@ export default class ViewDb extends React.Component {
                         <img src={m} className="gear-icon" alt="M" />
                     </div>
                 </div>
-                {gears}
+                {gearContent}
             </div>
         )
     }

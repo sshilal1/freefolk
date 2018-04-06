@@ -49,6 +49,13 @@
   width: 290px;
 }
 
+.gear-row--heading {
+  width: 290px;
+  margin: auto;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
 .gear-row-title {
   padding: 20px 0px;
 }

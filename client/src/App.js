@@ -7,7 +7,7 @@ import './App.css';
 import Header from './components/Header';
 import ViewAdder from './pages/ViewAdder';
 import ViewCalc from './pages/ViewCalc';
-import ViewDb from './pages/ViewDb';
+import ViewGear from './pages/ViewGear';
 import ViewCodes from './pages/ViewCodes';
 
 const init = {
@@ -113,7 +113,7 @@ export default class App extends React.Component {
 				view = <ViewAdder onAdd={this.addGear}/>;
 				break;
 			case "index":
-				view = <ViewDb gear={gear}/>;
+				view = <ViewGear gear={gear}/>;
 				break;
 			case "codes":
 				view = <ViewCodes codes={codes} onAdd={this.addCode}/>;
