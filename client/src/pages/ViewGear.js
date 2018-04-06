@@ -29,7 +29,7 @@ export default class ViewGear extends React.Component {
 
         const {gear} = this.props;
 
-        var sortedGears = _.groupBy(gear, "class");
+        var sortedGears = _.groupBy(gear, "gearClass");
         console.log(sortedGears);
 
         var gearContent = Object.keys(sortedGears).map((key) => {
@@ -54,8 +54,8 @@ export default class ViewGear extends React.Component {
                 <div className="f-row">
                     <div className="gear-row-title">
                         <div style={{fontSize:"24px"}} className="gear-title">Name</div>
-                        <img src={a} style={{width:"24px"}} className="gear-icon" alt="A" />
                         <img src={h} style={{width:"30px"}} className="gear-icon" alt="H" />
+                        <img src={a} style={{width:"24px"}} className="gear-icon" alt="A" />
                         <img src={d} style={{width:"30px"}} className="gear-icon" alt="D" />
                         <img src={m} className="gear-icon" alt="M" />
                     </div>

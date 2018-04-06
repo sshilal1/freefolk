@@ -10,7 +10,7 @@ export default class ViewAdder extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			class: '',
+			gearClass: '',
 			name: '',
 			health: '',
 			attack: '',
@@ -40,11 +40,11 @@ export default class ViewAdder extends React.Component {
 
 		this.props.onAdd(entry);
 		
-		this.setState({ class: '', name: '', health: '', attack: '', defense: '', magic: ''});
+		this.setState({ gearClass: '', name: '', health: '', attack: '', defense: '', magic: ''});
 	}
 
 	handleChange(e,i,v) {
-		this.setState({ class: v})
+		this.setState({ gearClass: v})
 	}
 
 	render() {
@@ -54,6 +54,8 @@ export default class ViewAdder extends React.Component {
 			width : "calc(100% - 140px)"
 		}
 
+		const { gearClass, name, health, attack, defense, magic}  = this.state;
+
 		return (
 			<div className="f-row">
 				<form className="f-col" style={{maxWidth:"500px"}} onSubmit={this.handleSubmit}>		
@@ -61,7 +63,7 @@ export default class ViewAdder extends React.Component {
 						<div className="entry-label"><div>Class</div></div>
 						<DropDownMenu
 						style={fieldstyle} 
-						value={this.state.class} 
+						value={gearClass} 
 						onChange={this.handleChange} 
 						underlineStyle={{margin:0}}
 						labelStyle={{paddingLeft:0}}>
@@ -77,19 +79,19 @@ export default class ViewAdder extends React.Component {
 						</DropDownMenu>
 					</div><div className="entry-row">
 						<div className="entry-label"><div>Item Name</div></div>
-						<TextField style={fieldstyle} name="name" onChange={this.handleInputChange} />
+						<TextField style={fieldstyle} name="name" onChange={this.handleInputChange} value={name} />
 					</div><div className="entry-row">
 						<div className="entry-label"><div>Health</div></div>
-						<TextField style={fieldstyle} name="health" onChange={this.handleInputChange} />
+						<TextField style={fieldstyle} name="health" onChange={this.handleInputChange} value={health}/>
 					</div><div className="entry-row">
 						<div className="entry-label"><div>Attack</div></div>
-						<TextField style={fieldstyle} name="attack" onChange={this.handleInputChange} />
+						<TextField style={fieldstyle} name="attack" onChange={this.handleInputChange} value={attack}/>
 					</div><div className="entry-row">
 						<div className="entry-label"><div>Defense</div></div>
-						<TextField style={fieldstyle} name="defense" onChange={this.handleInputChange} />
+						<TextField style={fieldstyle} name="defense" onChange={this.handleInputChange} value={defense}/>
 					</div><div className="entry-row">
 						<div className="entry-label"><div>Magic</div></div>
-						<TextField style={fieldstyle} name="magic" onChange={this.handleInputChange} />
+						<TextField style={fieldstyle} name="magic" onChange={this.handleInputChange} value={magic}/>
 					</div>
 					<RaisedButton style={{ width: "100%", margin: "20px 20px 20px 0px" }} type="submit" label="Add Gear" />
 				</form>

@@ -15,8 +15,8 @@ export default class GearLine extends React.Component {
             <div className="f-row">
             	<div className="gear-row">
             		<div>{name}</div>
+                    <div>{health}</div>
             		<div>{attack}</div>
-            		<div>{health}</div>
             		<div>{defense}</div>
             		<div>{magic}</div>
             	</div>
