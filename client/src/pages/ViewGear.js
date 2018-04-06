@@ -5,8 +5,6 @@ import h from '../img/health.png';
 import d from '../img/defense.png';
 import m from '../img/magic.png';
 
-import _ from 'lodash';
-
 const gearClasses = [
     "Main Hand",
     "Off Hand",
@@ -27,10 +25,7 @@ export default class ViewGear extends React.Component {
 
     render() {
 
-        const {gear} = this.props;
-
-        var sortedGears = _.groupBy(gear, "gearClass");
-        console.log(sortedGears);
+        const {gear,sortedGears} = this.props;
 
         var gearContent = Object.keys(sortedGears).map((key) => {
             return (

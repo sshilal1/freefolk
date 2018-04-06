@@ -25,6 +25,7 @@ export default class App extends React.Component {
 			gear : [],
 			orbs : [],
 			codes : [],
+			sortedGears : {},
 			page : "",
 			nav : init
 		}
@@ -34,6 +35,7 @@ export default class App extends React.Component {
 		this.fetchGear = this.fetchGear.bind(this);
 		this.addCode = this.addCode.bind(this);
 		this.fetchCodes = this.fetchCodes.bind(this);
+		this.setGear = this.setGear.bind(this);
 	}
 
 	componentDidMount() {
@@ -55,9 +57,7 @@ export default class App extends React.Component {
 	addGear(gear) {
 		axios.post('/gear', gear)
 		.then( (response) => {
-			this.setState({
-				gear : response.data
-			})
+			this.setGear(response.data)
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -68,9 +68,7 @@ export default class App extends React.Component {
 		axios.get('/gear')
 		.then( (res) => {
 			console.log("success gear");
-			this.setState({
-				gear : res.data
-			})
+			this.setGear(res.data)
 		})
 		.catch(function (error) {
 			console.log(error);
@@ -102,9 +100,16 @@ export default class App extends React.Component {
 		});
 	}
 
+	setGear(gear) {
+		this.setState({
+			gear: gear,
+			sortedGears : _.groupBy(gear, "gearClass")
+		});
+	}
+
 	render() {
 
-		const {gear,codes,page,nav} = this.state;
+		const {gear,codes,page,nav,sortedGears} = this.state;
 
 		var view;
 
@@ -113,13 +118,13 @@ export default class App extends React.Component {
 				view = <ViewAdder onAdd={this.addGear}/>;
 				break;
 			case "index":
-				view = <ViewGear gear={gear}/>;
+				view = <ViewGear gear={gear} sortedGears={sortedGears}/>;
 				break;
 			case "codes":
 				view = <ViewCodes codes={codes} onAdd={this.addCode}/>;
 				break;
 			case "calc":
-				view = <ViewCalc/>;
+				view = <ViewCalc sortedGears={sortedGears}/>;
 				break;
 		}
 
