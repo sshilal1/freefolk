@@ -2,6 +2,8 @@ import React from 'react';
 import _ from 'lodash';
 import axios from 'axios';
 
+import { helmets, links } from '../data/data';
+
 export default class ViewCalc extends React.Component {
 
     constructor() {
@@ -15,7 +17,10 @@ export default class ViewCalc extends React.Component {
 
         const {sortedGears} = this.props;
 
-        console.log(sortedGears);
+        helmets.array.forEach(helmet => {
+            var helmetWithLinks = links.find(link => link.id === helmet.id);
+            //helmetWithLinks
+        });
         
         return (
             <div>
