@@ -40,7 +40,7 @@ export default class App extends React.Component {
 
 	componentDidMount() {
 		this.fetchGear();
-		this.fetchCodes();
+		//this.fetchCodes();
 		this.nav("codes");
 	}
 
@@ -125,6 +125,9 @@ export default class App extends React.Component {
 				break;
 			case "calc":
 				view = <ViewCalc sortedGears={sortedGears}/>;
+				break;
+			default:
+				view = <ViewGear gear={gear} sortedGears={sortedGears}/>;
 				break;
 		}
 

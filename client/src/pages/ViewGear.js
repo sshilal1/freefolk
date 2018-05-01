@@ -5,27 +5,27 @@ import h from '../img/health.png';
 import d from '../img/defense.png';
 import m from '../img/magic.png';
 
-const gearClasses = [
-    "Main Hand",
-    "Off Hand",
-    "Helmet",
-    "Armor",
-    "Gloves",
-    "Boots",
-    "Pendant",
-    "Ring",
-    "Talisman"
-]
+// const gearClasses = [
+//     "Main Hand",
+//     "Off Hand",
+//     "Helmet",
+//     "Armor",
+//     "Gloves",
+//     "Boots",
+//     "Pendant",
+//     "Ring",
+//     "Talisman"
+// ]
 
 export default class ViewGear extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     render() {
 
-        const {gear,sortedGears} = this.props;
+        const {sortedGears} = this.props;
 
         var gearContent = Object.keys(sortedGears).map((key) => {
             return (
@@ -40,9 +40,9 @@ export default class ViewGear extends React.Component {
             )
         });
 
-        const gears = gear.map((item, index) => {
-			return <GearLine key={item.id} {...item} />
-        })
+        // const gears = gear.map((item, index) => {
+		// 	return <GearLine key={item.id} {...item} />
+        // })
         
         return (
             <div>

@@ -1,88 +1,7 @@
 var express = require('express');
 var app = express();
 var mongoClient = require('mongodb').MongoClient;
-var dbUrl = "mongodb://localhost:27017/mydb";
-
-var getDbObjects = function() {
-	return new Promise((resolve,reject) => {
-		mongoClient.connect(dbUrl, function(err, db) {
-		  if (err) reject(err);
-		  var mycollection = db.collection("reservations").find();
-		  var myObjs = [];
-		  mycollection.each(function(err, item) {
-		  	if (item==null) {
-		  		db.close();
-		  		resolve(myObjs);
-		  	}
-		  	else {
-		  		myObjs.push(item);
-		  	}
-		  })
-		})
-	})
-}
-
-var addReservation = function(reservation) {
-	return new Promise((resolve,reject) => {
-		mongoClient.connect(dbUrl, function(err, db) {
-		  if (err) reject(err);
-		  db.collection("reservations").insertOne(reservation, function(err, res) {
-		    if (err) reject(err);
-		    console.log('successfully added reservation!');
-		    //resolve('successfully added reservation!');
-		    getDbObjects()
-				.then((data) => {
-					resolve(data);
-				})
-		  });
-		});
-	})
-}
-
-var removeReservation = function(reservation) {
-	return new Promise((resolve,reject) => {
-		mongoClient.connect(dbUrl, function(err, db) {
-			if (err) reject(err);
-		  db.collection("reservations").deleteOne(reservation, function(err, obj) {
-		    if (err) reject(err);
-		    console.log(obj.result.n + " reservations deleted");
-		    //resolve(obj.result.n + " reservations deleted");
-		    getDbObjects()
-				.then((data) => {
-					resolve(data);
-				})
-		  });
-		});
-	})
-}
-
-var updateReservation = function(reservation) {
-	return new Promise((resolve,reject) => {
-		mongoClient.connect(dbUrl, function(err, db) {
-			var myquery = { id : reservation.id };
-			if (err) reject(err);
-		  db.collection("reservations").updateOne(myquery, reservation, function(err, obj) {
-		    if (err) reject(err);
-		    console.log("reservation updated!");
-		    getDbObjects()
-				.then((data) => {
-					resolve(data);
-				})
-		  });
-		});
-	})
-}
-
-var dropCollection = function() {
-	mongoClient.connect(dbUrl, function(err, db) {
-	  if (err) throw err;
-	  db.collection("reservations").drop(function(err, delOK) {
-	    if (err) throw err;
-	    if (delOK) console.log("Collection deleted");
-	    db.close();
-	  });
-	});
-}
+var dbUrl = "mongodb://dev-shil.ddns.net:27017/mydb";
 
 app.use(express.static('public_html'));
 
@@ -120,12 +39,13 @@ var addItem = (gear,type) => {
 var getTable = function(type) {
 	return new Promise((resolve,reject) => {
 		mongoClient.connect(dbUrl, function(err, db) {
-		  if (err) reject(err);
-		  var mycollection = db.collection(type).find();
+			if (err) reject(err);
+			var mycollection = db.collection(type).find();
 		  var myObjs = [];
 		  mycollection.each(function(err, item) {
 		  	if (item==null) {
-		  		db.close();
+					db.close();
+					console.log(myObjs);
 		  		resolve(myObjs);
 		  	}
 		  	else {
@@ -138,7 +58,7 @@ var getTable = function(type) {
 
 app.get('/gear', function (req,res) {
 	console.log("Request for all gear...");
-	getTable("gear")
+	getTable("helmets")
 	.then(function(result) {
 		res.send(result);
 	})

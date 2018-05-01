@@ -43,7 +43,7 @@ export default class ViewCodes extends React.Component {
 		console.log(entry);
 		event.preventDefault();
 
-		if (code == '' || name == '') {
+		if (code === '' || name === '') {
 			alert('Please fill in both fields');
     }
 
